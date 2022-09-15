@@ -5,29 +5,72 @@
 
 int main()
 {
-    int n, i, maior, menor, aleatorioInt;
+    
+    int opcao, a, b, n, i, maior, menor, aleatorioInt;
     float aleatorioFloat, nums;
     srand(time(NULL));
-    
-    printf("Quantos aleatórios? ");
-    scanf("%d", &n);
-    aleatorioInt = rand()%101;
-    aleatorioFloat = (float)rand()/((float)RAND_MAX)*101;
-    
-    printf("Inteiro: %d \nReal: %.2f \nNumeros aleatórios: ", aleatorioInt, aleatorioFloat);
-    
-    if(aleatorioInt > aleatorioFloat){
-        maior = aleatorioInt;
-        menor = aleatorioFloat;
-    }else{
-        menor = aleatorioInt;
-        maior = aleatorioFloat;
-    }
 
-    for(i = 0; i < n; i++){
-        nums = ((maior - menor) * ((float)rand() / RAND_MAX)) + menor;
-        printf("%.2f ", nums);
+    while(1)
+    {
+            
+        printf("1 - Gerar aleatório inteiro entre A e B\n");
+        printf("2 - Gerar aleatório real entre A e B\n");
+        printf("3 - Gerar n aleatórios entre A e B.\n");
+        printf("4 - Sair do programa\n");
+        scanf("%d", &opcao);
+    
+        switch(opcao){
+            case 1:
+                printf("\nQual valor de A e B? ");
+                scanf("%d %d", &a, &b);
+                if(a > b){
+                    maior = a;
+                    menor = b;
+                }else{
+                    maior = b;
+                    menor = a;
+                }
+                aleatorioInt = (rand() % (maior - menor + 1)) + menor;
+                printf("%d\n\n", aleatorioInt);
+            break;
+        
+            case 2:
+                printf("\nQual valor de A e B? ");
+                scanf("%d %d", &a, &b);
+                if(a > b){
+                    maior = a;
+                    menor = b;
+                }else{
+                    maior = b;
+                    menor = a;
+                }
+                aleatorioFloat = (menor + 1) + (((float) rand()) / (float) RAND_MAX) * (maior - (menor + 1));
+                printf("%.2f\n\n", aleatorioFloat);
+            break;
+        
+            case 3:
+                printf("\nQual valor de A e B? ");
+                scanf("%d %d", &a, &b);
+                printf("Quantos numeros aleatorios? ");
+                scanf("%d", &n);
+                if(a > b){
+                    maior = a;
+                    menor = b;
+                }else{
+                    maior = b;
+                    menor = a;
+                }
+                for(i = 1; i <= n; i++){
+                aleatorioFloat = (menor + 1) + (((float) rand()) / (float) RAND_MAX) * (maior - (menor + 1));
+                printf("%.2f  ", aleatorioFloat);
+                }
+                printf("\n\n");
+            break;
+        
+            case 4:
+                exit(1);
+            break;
+        }
     }
-
     return 0;
 }
