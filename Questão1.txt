@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <time.h>
+
+int main()
+{
+    srand(time(NULL));
+    int n, i;
+    float A, B, maior, menor, aleatorio, maiorA = 0, menorA = 100, mediaA;
+    
+    A = (float)rand()/((float)RAND_MAX)*101;
+    B = (float)rand()/((float)RAND_MAX)*101;
+    
+    n = rand()%101;
+
+    if(A > B){
+        maior = A;
+        menor = B;
+    }else{
+        menor = A;
+        maior = B;   
+    }
+
+    printf("Valor de A = %0.3f \nValor de B = %0.3f \nValor de N = %d",A,B,n);
+    
+    for(i = 1; i <= n; i++){
+        aleatorio = (menor + 1) + (((float) rand()) / (float) RAND_MAX) * (maior - (menor +1));
+        printf("\n %0.3f" ,aleatorio);
+        if(aleatorio > maiorA){
+            maiorA = aleatorio;
+        }
+        if(aleatorio < menorA){
+            menorA = aleatorio;
+        }
+    }
+    mediaA = ( maiorA + menorA ) / 2.0;
+    printf("\nMaior = %0.3f \nMenor = %0.3f \nMedia = %0.3f",maiorA,menorA, mediaA);
+    
+    return 0;
+}
